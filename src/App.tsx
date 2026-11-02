@@ -15,6 +15,7 @@ import { Compete } from './views/Compete';
 import { Splash } from './views/Splash';
 import { Tour } from './components/Tour';
 import { api } from './compete';
+import { streak } from './calc';
 import { readSnapshotFromHash, type Snapshot } from './share';
 
 type Tab = 'today' | 'progress' | 'training' | 'compete' | 'history' | 'plan' | 'settings';
@@ -120,11 +121,15 @@ function Shell() {
       <aside className="sidebar">
         <Wordmark size={30} />
         <nav>{nav(true)}</nav>
+        {streak(state, today()) > 0 && <span className="sidebar-streak"><Icon name="flame" size={15} />{streak(state, today())}-day streak</span>}
         <p className="sidebar-foot">{state.profile.name ? `Hi, ${state.profile.name}` : 'Stored on this device'}</p>
       </aside>
       <header className="topbar">
         <Wordmark size={30} />
-        <button className="icon-btn" aria-label="Settings" onClick={() => setTab('settings')}><Icon name="settings" /></button>
+        <div className="topbar-right">
+          {streak(state, today()) > 0 && <span className="sidebar-streak" title="Logging streak"><Icon name="flame" size={14} />{streak(state, today())}</span>}
+          <button className="icon-btn" aria-label="Settings" onClick={() => setTab('settings')}><Icon name="settings" /></button>
+        </div>
       </header>
       <main>
         {tab === 'today' && <Today date={date} setDate={setDate} />}

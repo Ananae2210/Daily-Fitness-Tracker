@@ -39,7 +39,7 @@ export function Plan() {
         <div className="summary-grid">
           <div><span>Maintenance</span><b>{Math.round(cal.maintenance).toLocaleString()}</b><small>kcal / day</small></div>
           <div className="hl"><span>{lose ? 'Daily cap' : 'Daily target'}</span><b>{cal.base.toLocaleString()}</b><small>rest days</small></div>
-          <div><span>Workout days</span><b>{(cal.base + workoutExtra).toLocaleString()}</b><small>+{workoutExtra} kcal</small></div>
+          <div className="pop"><span>Workout days</span><b>{(cal.base + workoutExtra).toLocaleString()}</b><small>+{workoutExtra} kcal</small></div>
           <div><span>Protein</span><b>{proteinTarget(state, t)} g</b><small>{state.targets.proteinG == null ? 'auto, 1.8 g/kg' : 'custom'}</small></div>
         </div>
         {cal.clamped && (

@@ -40,7 +40,7 @@ export function Today({ date, setDate }: { date: string; setDate: (d: string) =>
       <div className="grid-2">
         <Card className="hero" tour="hero">
           <div className="hero-top">
-            <div data-tour="daytype"><Segmented label="Day type" value={day.type} onChange={(t) => updateDay(date, (d) => ({ ...d, type: t }))}
+            <div data-tour="daytype" className="daytype"><Segmented label="Day type" value={day.type} onChange={(t) => updateDay(date, (d) => ({ ...d, type: t }))}
               options={[{ value: 'rest', label: 'Rest day' }, { value: 'workout', label: 'Workout day' }]} /></div>
             <span className="score-pill" title="Calories, protein and water targets hit today">
               {[score.cal, score.protein, score.water].map((ok, i) => <i key={i} className={ok ? 'on' : ''} />)}

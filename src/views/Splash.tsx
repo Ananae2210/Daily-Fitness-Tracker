@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { Icon } from '../components/Icon';
 
 const FEATURES = [
-  { icon: 'flame', title: 'Know what’s left', body: 'A daily calorie ring and targets that adapt to your goal.' },
-  { icon: 'drop', title: 'Log in seconds', body: 'Meals, water, caffeine, sleep and weight, with one-tap repeats.' },
-  { icon: 'chart', title: 'See it working', body: 'Trends, forecasts and a weekly consistency score.' },
-  { icon: 'trophy', title: 'Compete with friends', body: 'Private leaderboards for streaks, consistency and lifts.' },
+  { icon: 'flame', tone: 'c-pop', title: 'Know what’s left', body: 'A daily calorie ring and targets that adapt to your goal.' },
+  { icon: 'drop', tone: 'c-water', title: 'Log in seconds', body: 'Meals, water, caffeine, sleep and weight, with one-tap repeats.' },
+  { icon: 'chart', tone: 'c-violet', title: 'See it working', body: 'Trends, forecasts and a weekly consistency score.' },
+  { icon: 'trophy', tone: '', title: 'Compete with friends', body: 'Private leaderboards for streaks, consistency and lifts.' },
 ];
 
 export function Splash({ onDone }: { onDone: () => void }) {
@@ -26,12 +26,12 @@ export function Splash({ onDone }: { onDone: () => void }) {
       <div className="splash-inner">
         <LogoMark size={112} animated className="splash-mark" />
         <h1 id="splash-title" className="splash-title">steady</h1>
-        <p className="splash-tag">Small daily habits, visible progress.</p>
+        <p className="splash-tag">Small daily habits, <em>visible progress.</em></p>
 
         <ul className="splash-features">
           {FEATURES.map((f, i) => (
             <li key={f.title} style={{ animationDelay: `${0.9 + i * 0.12}s` }}>
-              <span className="sf-icon"><Icon name={f.icon} size={20} /></span>
+              <span className={`sf-icon ${f.tone}`}><Icon name={f.icon} size={20} /></span>
               <div><b>{f.title}</b><span>{f.body}</span></div>
             </li>
           ))}

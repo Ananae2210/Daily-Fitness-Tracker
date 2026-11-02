@@ -8,7 +8,7 @@ export function Card({ title, icon, action, children, className = '', tour }: {
     <section className={`card ${className}`} data-tour={tour}>
       {(title || action) && (
         <header className="card-head">
-          {title && <h2>{icon && <Icon name={icon} size={18} />}{title}</h2>}
+          {title && <h2>{icon && <Icon name={icon} size={18} className={`i-${icon}`} />}{title}</h2>}
           {action}
         </header>
       )}

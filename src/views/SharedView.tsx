@@ -17,9 +17,9 @@ export function SharedView({ snap, onExit }: { snap: Snapshot; onExit: () => voi
           <span className="muted">Goal: {snap.d} weight · snapshot from {fmtDay(snap.at, { day: 'numeric', month: 'long' })}</span>
         </div>
         <div className="stats-row">
-          <Card><Stat label="Consistency (7d)" value={`${Math.round(snap.c * 100)}%`} tone={snap.c >= 0.7 ? 'good' : 'warn'} /></Card>
-          <Card><Stat label="Streak" value={<>{snap.s}<small> days</small></>} /></Card>
-          <Card><Stat label="Goal progress" value={`${Math.round(snap.g * 100)}%`} />
+          <Card className="accent-top"><Stat label="Consistency (7d)" value={`${Math.round(snap.c * 100)}%`} tone={snap.c >= 0.7 ? 'good' : 'warn'} /></Card>
+          <Card className="accent-top pop"><Stat label="Streak" value={<>{snap.s}<small> days</small></>} /></Card>
+          <Card className="accent-top violet"><Stat label="Goal progress" value={`${Math.round(snap.g * 100)}%`} />
             <div className="bar-track mt"><div className="bar-fill tone-accent" style={{ width: `${snap.g * 100}%` }} /></div></Card>
         </div>
         <Card title="Calories vs target, last 14 days" icon="flame">

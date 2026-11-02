@@ -83,7 +83,7 @@ export function Training() {
               return (
                 <li key={l.id}>
                   <span className="log-icon k-lift"><Icon name="dumbbell" size={16} /></span>
-                  <div className="log-main"><b>{l.exercise} {ex?.best.id === l.id && <span className="tag">PR</span>}</b>
+                  <div className="log-main"><b>{l.exercise} {ex?.best.id === l.id && <span className="tag pop">PR</span>}</b>
                     <span>{l.weight} kg × {l.reps} · est. {est1RM(l.weight, l.reps).toFixed(1)} kg</span></div>
                   <time>{fmtDay(l.date, { day: 'numeric', month: 'short' })}</time>
                   <button className="icon-btn sm" aria-label="Delete set" onClick={() =>

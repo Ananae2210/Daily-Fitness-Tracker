@@ -7,6 +7,7 @@ import {
 import { fmtDay, lastNDates, today } from '../date';
 import { Card, Details, Empty, Segmented, Stat } from '../components/ui';
 import { CalorieChart, ScoreStrip, WeightChart } from '../components/Charts';
+import { Icon } from '../components/Icon';
 
 export function Progress() {
   const { state } = useStore();
@@ -41,10 +42,10 @@ export function Progress() {
       </div>
 
       <div className="stats-row" data-tour="progress-stats">
-        <Card><Stat label="Consistency (7d)" value={`${Math.round(cons * 100)}%`} tone={cons >= 0.7 ? 'good' : cons >= 0.4 ? 'warn' : 'bad'}
+        <Card className="accent-top"><Stat label="Consistency (7d)" value={`${Math.round(cons * 100)}%`} tone={cons >= 0.7 ? 'good' : cons >= 0.4 ? 'warn' : 'bad'}
           sub="Calories, protein, water" /><ScoreStrip days={lastNDates(end, 7).map((d) => ({ date: d, points: dayScore(state, d).points }))} /></Card>
-        <Card><Stat label="Streak" value={<>{streak(state, end)}<small> days</small></>} sub="Days with anything logged" /></Card>
-        <Card>
+        <Card className="accent-top pop"><Stat label="Streak" value={<><Icon name="flame" size={26} className="flame" />{streak(state, end)}<small> days</small></>} sub="Days with anything logged" /></Card>
+        <Card className="accent-top violet">
           <Stat label="Goal progress" value={`${Math.round(gp * 100)}%`}
             sub={`${w.toFixed(1)} kg now · goal ${goalWeight(state).toFixed(1)} kg`} />
           <div className="bar-track mt"><div className="bar-fill tone-accent" style={{ width: `${gp * 100}%` }} /></div>

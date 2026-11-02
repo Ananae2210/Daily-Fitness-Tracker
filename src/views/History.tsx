@@ -32,7 +32,7 @@ export function History({ openDay }: { openDay: (d: string) => void }) {
                       <span title="Water"><Icon name="drop" size={14} />{(dayWater(day) / 1000).toFixed(1)} L</span>
                       {day.sleepH != null && <span title="Sleep"><Icon name="moon" size={14} />{day.sleepH} h</span>}
                       {day.weightKg != null && <span title="Weight"><Icon name="scale" size={14} />{day.weightKg.toFixed(1)} kg</span>}
-                      {day.type === 'workout' && <span className="tag">Workout</span>}
+                      {day.type === 'workout' && <span className="tag pop">Workout</span>}
                     </div>
                     <span className={`h-score p${sc.points}`}>{sc.points}/3</span>
                     <Icon name="right" size={16} className="chev" />
