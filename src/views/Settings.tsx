@@ -3,6 +3,7 @@ import { defaultState, useStore } from '../store';
 import { calorieTarget, dayCaffeine, dayKcal, dayProtein, dayWater } from '../calc';
 import { today } from '../date';
 import { makeSnapshot, snapshotUrl } from '../share';
+import { api } from '../compete';
 import { Card, Segmented } from '../components/ui';
 import { Icon } from '../components/Icon';
 import type { AppState } from '../types';
@@ -36,7 +37,7 @@ export function Settings() {
     try {
       const data = JSON.parse(await f.text()) as AppState;
       if (data?.version !== 1 || typeof data.days !== 'object') throw new Error('bad');
-      replace({ ...defaultState(), ...data, onboarded: true });
+      replace({ ...defaultState(), ...data, compete: data.compete ?? null, onboarded: true });
       setImportMsg(`Restored ${Object.keys(data.days).length} days and ${data.lifts?.length ?? 0} sets.`);
     } catch {
       setImportMsg('That file is not a Steady backup.');
@@ -87,12 +88,12 @@ export function Settings() {
         </Card>
 
         <Card title="Start over" icon="trash" className="danger-zone">
-          <p className="muted">Erases every log, lift and setting from this browser. Download a backup first if you might want it back.</p>
+          <p className="muted">Erases every log, lift and setting from this browser and removes you from leaderboards. Download a backup first if you might want it back.</p>
           {!confirmDelete ? (
             <button className="btn danger mt" onClick={() => setConfirmDelete(true)}>Delete all data</button>
           ) : (
             <div className="btn-row mt">
-              <button className="btn danger" onClick={() => { replace(defaultState()); setConfirmDelete(false); }}>Yes, delete everything</button>
+              <button className="btn danger" onClick={async () => { if (state.compete) await api.remove(state).catch(() => {}); replace(defaultState()); setConfirmDelete(false); }}>Yes, delete everything</button>
               <button className="btn" onClick={() => setConfirmDelete(false)}>Cancel</button>
             </div>
           )}

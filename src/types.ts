@@ -47,6 +47,16 @@ export interface Day {
 
 export interface Lift { id: string; date: string; exercise: string; weight: number; reps: number }
 
+export interface Compete {
+  memberId: string;
+  token: string;
+  /** board codes this tracker belongs to */
+  boards: string[];
+  /** cached board names for the tab strip */
+  names?: Record<string, string>;
+  lastSync: string | null;
+}
+
 export interface AppState {
   version: 1;
   onboarded: boolean;
@@ -56,4 +66,6 @@ export interface AppState {
   days: Record<string, Day>;
   lifts: Lift[];
   theme: Theme;
+  /** set once the person joins leaderboards */
+  compete: Compete | null;
 }

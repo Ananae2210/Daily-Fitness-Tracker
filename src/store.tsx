@@ -13,6 +13,7 @@ export const defaultState = (): AppState => ({
   days: {},
   lifts: [],
   theme: 'auto',
+  compete: null,
 });
 
 const load = (): AppState => {
@@ -33,6 +34,8 @@ const load = (): AppState => {
 };
 
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+export const randomId = (bytes = 12) =>
+  Array.from(crypto.getRandomValues(new Uint8Array(bytes)), (b) => b.toString(36).padStart(2, '0')).join('').slice(0, bytes * 2);
 
 interface Toast { id: number; message: string; undo?: AppState }
 

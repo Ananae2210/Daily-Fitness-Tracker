@@ -1,6 +1,6 @@
 # Steady · Daily Tracker
 
-A calm, fast daily tracker for food, water, caffeine, sleep, weight and strength training. Built with React, TypeScript and Vite. No account and no server: everything is stored in your browser.
+A calm, fast daily tracker for food, water, caffeine, sleep, weight and strength training. Built with React, TypeScript and Vite. No account needed: your logs stay in your browser. The optional leaderboards use a small serverless API (`api/leaderboard.ts`) backed by Upstash Redis.
 
 ## Features
 
@@ -11,6 +11,7 @@ A calm, fast daily tracker for food, water, caffeine, sleep, weight and strength
 - **Progress**: 7-day consistency score, logging streak, goal %, calories vs target chart, weight trend vs goal, forecast to your goal date, sleep average/debt, BMI, body-fat estimate and protein per kg.
 - **Training**: log sets, see estimated 1RM (Epley) and personal records per exercise.
 - **History**: every logged day at a glance with its daily score; tap to open it.
+- **Compete**: leaderboards ranked by lock-in (7-day consistency), streak, goal % or best lift. Create private boards with invite links/codes or join the public board. Only name, goal direction, scores and best lifts are shared.
 - **Share**: create a read-only snapshot link (consistency, streak, goal %, calories vs target and best lifts; no weight, meals or sleep).
 - **Your data**: JSON backup/restore, CSV export, delete everything. Light, dark and auto themes.
 
@@ -24,4 +25,7 @@ npm run build    # outputs dist/
 
 ## Deploy on Vercel
 
-Import the repository at [vercel.com/new](https://vercel.com/new). Vercel detects Vite automatically (build `npm run build`, output `dist`), so no settings need changing.
+1. Import the repository at [vercel.com/new](https://vercel.com/new). Vercel detects Vite automatically (build `npm run build`, output `dist`) and deploys `api/` as serverless functions.
+2. For leaderboards: in the Vercel project open **Storage → Create Database → Upstash (Redis)**, pick the free plan, and connect it to this project. That adds `KV_REST_API_URL` and `KV_REST_API_TOKEN`. Redeploy once. Without it, everything else works and the Compete tab says leaderboards aren't set up.
+
+Local API testing: set `LEADERBOARD_DEV_MEMORY=1` to use an in-memory store instead of Redis.
