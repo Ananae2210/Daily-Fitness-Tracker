@@ -60,6 +60,12 @@ export function Settings() {
             options={[{ value: 'auto', label: 'Auto' }, { value: 'light', label: 'Light' }, { value: 'dark', label: 'Dark' }]} />
         </Card>
 
+        <Card title="Guide" icon="info">
+          <p className="muted">New here, or want a refresher? Walk through each section of the app again.</p>
+          <button className="btn mt" onClick={() => set((s) => ({ ...s, intro: { ...s.intro, tourDone: false } }))}>
+            <Icon name="right" size={16} />Replay the tour</button>
+        </Card>
+
         <Card title="Share progress" icon="share">
           <p className="muted">Creates a read-only link with your consistency, streak, goal %, last 14 days of calories vs target and best lifts.
             Weight, meals and sleep stay private. The link is a snapshot of right now.</p>
@@ -74,7 +80,7 @@ export function Settings() {
           )}
         </Card>
 
-        <Card title="Your data" icon="download">
+        <Card title="Your data" icon="download" tour="settings-data">
           <p className="muted">Everything is stored only in this browser. Export a backup to move devices or keep a copy.</p>
           <div className="btn-row">
             <button className="btn" onClick={() => download(`steady-backup-${today()}.json`, JSON.stringify(state, null, 2), 'application/json')}>

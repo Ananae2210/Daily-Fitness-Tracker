@@ -4,6 +4,7 @@ A calm, fast daily tracker for food, water, caffeine, sleep, weight and strength
 
 ## Features
 
+- **First visit**: an animated splash screen, quick 2-step setup, then a guided spotlight tour through every section (replayable from Settings).
 - **Today**: calorie ring with what's left, progress bars for protein, water and caffeine, rest/workout day toggle, and a day log with one-tap delete and undo. Move between days to fill in or fix past entries.
 - **Fast logging**: tabbed logger for meals, water, caffeine and a morning check-in (sleep + weight). Recent meals can be re-logged with one tap.
 - **Smart targets**: maintenance from Mifflin-St Jeor × activity, a daily cap (losing) or target (gaining) that adapts to your latest weigh-in and optional target date, with safety floors and workout-day extras.

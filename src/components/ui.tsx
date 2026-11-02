@@ -1,11 +1,11 @@
 import { useId, type ReactNode, type InputHTMLAttributes } from 'react';
 import { Icon } from './Icon';
 
-export function Card({ title, icon, action, children, className = '' }: {
-  title?: ReactNode; icon?: string; action?: ReactNode; children: ReactNode; className?: string;
+export function Card({ title, icon, action, children, className = '', tour }: {
+  title?: ReactNode; icon?: string; action?: ReactNode; children: ReactNode; className?: string; tour?: string;
 }) {
   return (
-    <section className={`card ${className}`}>
+    <section className={`card ${className}`} data-tour={tour}>
       {(title || action) && (
         <header className="card-head">
           {title && <h2>{icon && <Icon name={icon} size={18} />}{title}</h2>}

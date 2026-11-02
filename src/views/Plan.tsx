@@ -35,7 +35,7 @@ export function Plan() {
     <div className="view">
       <div className="view-head"><h1>Plan</h1></div>
 
-      <Card className="plan-summary">
+      <Card className="plan-summary" tour="plan-summary">
         <div className="summary-grid">
           <div><span>Maintenance</span><b>{Math.round(cal.maintenance).toLocaleString()}</b><small>kcal / day</small></div>
           <div className="hl"><span>{lose ? 'Daily cap' : 'Daily target'}</span><b>{cal.base.toLocaleString()}</b><small>rest days</small></div>

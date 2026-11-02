@@ -52,7 +52,7 @@ function JoinIntro({ inviteCode }: { inviteCode: string | null }) {
     <div className="view">
       <div className="view-head"><h1>Compete</h1></div>
       <div className="grid-2 align-start">
-        <Card title="Join the leaderboards" icon="trophy">
+        <Card title="Join the leaderboards" icon="trophy" tour="compete">
           <form className="stack" onSubmit={(e) => { e.preventDefault(); join(); }}>
             <p className="muted">Rank against friends on consistency, streaks, goal progress and lifts. Make a private board for your group, or join the public one.</p>
             <Field label="Display name" required maxLength={24} value={name} onChange={(e) => setName(e.target.value)} placeholder="How others see you" />
@@ -185,7 +185,7 @@ function Boards({ inviteCode, clearInvite }: { inviteCode: string | null; clearI
         </Empty>{error && <p className="form-error">{error}</p>}</Card>
       ) : (
         <>
-          <div className="board-tabs" role="tablist">
+          <div className="board-tabs" role="tablist" data-tour="compete">
             {c.boards.map((b) => (
               <button key={b} role="tab" aria-selected={b === active} className={b === active ? 'on' : ''} onClick={() => setActive(b)}>
                 {b === PUBLIC_BOARD ? <><Icon name="today" size={14} />Everyone</> : label(b)}

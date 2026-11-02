@@ -11,6 +11,8 @@ import { Settings } from './views/Settings';
 import { Onboarding } from './views/Onboarding';
 import { SharedView } from './views/SharedView';
 import { Compete } from './views/Compete';
+import { Splash } from './views/Splash';
+import { Tour } from './components/Tour';
 import { api } from './compete';
 import { readSnapshotFromHash, type Snapshot } from './share';
 
@@ -64,7 +66,8 @@ function Toast() {
 }
 
 function Shell() {
-  const { state } = useStore();
+  const { state, set } = useStore();
+  const [tourOpen, setTourOpen] = useState(false);
   const [invite, setInvite] = useState<string | null>(() => location.hash.match(/join=([A-Za-z0-9]+)/)?.[1]?.toUpperCase() ?? null);
   const [tab, setTab] = useState<Tab>(() => {
     if (invite) return 'compete';
@@ -81,13 +84,25 @@ function Shell() {
     window.scrollTo({ top: 0 });
   }, [tab, snap]);
 
+  // first-time tour: once onboarding is done (not when arriving from an invite link)
+  useEffect(() => {
+    if (state.onboarded && !state.intro.tourDone && !invite && !snap) setTourOpen(true);
+  }, [state.onboarded, state.intro.tourDone, invite, snap]);
+
+  const closeTour = () => {
+    setTourOpen(false);
+    setTab('today');
+    set((s) => ({ ...s, intro: { ...s.intro, tourDone: true } }));
+  };
+
   if (snap) return <SharedView snap={snap} onExit={() => { history.replaceState(null, '', '#today'); setSnap(null); }} />;
+  if (!state.intro.splashSeen) return <Splash onDone={() => set((s) => ({ ...s, intro: { ...s.intro, splashSeen: true } }))} />;
   if (!state.onboarded) return <><Onboarding /><Toast /></>;
 
   const nav = (extra = false) => (
     <>
       {TABS.map((t) => (
-        <button key={t.id} className={tab === t.id ? 'on' : ''} onClick={() => setTab(t.id)} aria-current={tab === t.id ? 'page' : undefined}>
+        <button key={t.id} data-tour={`nav-${t.id}`} className={tab === t.id ? 'on' : ''} onClick={() => setTab(t.id)} aria-current={tab === t.id ? 'page' : undefined}>
           <Icon name={t.icon} /><span>{t.label}</span>
         </button>
       ))}
@@ -120,7 +135,8 @@ function Shell() {
         {tab === 'settings' && <Settings />}
       </main>
       <nav className="bottombar">{nav()}</nav>
-      <Toast />
+      {tourOpen && <Tour setTab={setTab} onClose={closeTour} />}
+      {!tourOpen && <Toast />}
     </div>
   );
 }

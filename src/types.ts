@@ -68,4 +68,6 @@ export interface AppState {
   theme: Theme;
   /** set once the person joins leaderboards */
   compete: Compete | null;
+  /** first-run splash and guided tour */
+  intro: { splashSeen: boolean; tourDone: boolean };
 }

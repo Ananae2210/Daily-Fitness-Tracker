@@ -11,7 +11,7 @@ export function History({ openDay }: { openDay: (d: string) => void }) {
   return (
     <div className="view">
       <div className="view-head"><h1>History</h1><span className="muted">{dates.length} days logged</span></div>
-      <Card>
+      <Card tour="history">
         {dates.length === 0 ? <Empty icon="history">Days you log show up here. Tap a day to view or edit it.</Empty> : (
           <ul className="history">
             {dates.map((d) => {

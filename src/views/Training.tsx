@@ -45,7 +45,7 @@ export function Training() {
     <div className="view">
       <div className="view-head"><h1>Training</h1></div>
       <div className="grid-2 align-start">
-        <Card title="Log a set" icon="dumbbell">
+        <Card title="Log a set" icon="dumbbell" tour="training">
           <form className="stack" onSubmit={submit}>
             <Field label="Exercise" list="exercises" placeholder="e.g. Squat" value={exercise} onChange={(e) => setExercise(e.target.value)} required />
             <datalist id="exercises">{known.map((k) => <option key={k} value={k} />)}</datalist>

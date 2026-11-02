@@ -40,7 +40,7 @@ export function Progress() {
           options={[{ value: '7', label: '7 days' }, { value: '30', label: '30 days' }, { value: '90', label: '90 days' }]} />
       </div>
 
-      <div className="stats-row">
+      <div className="stats-row" data-tour="progress-stats">
         <Card><Stat label="Consistency (7d)" value={`${Math.round(cons * 100)}%`} tone={cons >= 0.7 ? 'good' : cons >= 0.4 ? 'warn' : 'bad'}
           sub="Calories, protein, water" /><ScoreStrip days={lastNDates(end, 7).map((d) => ({ date: d, points: dayScore(state, d).points }))} /></Card>
         <Card><Stat label="Streak" value={<>{streak(state, end)}<small> days</small></>} sub="Days with anything logged" /></Card>
@@ -51,7 +51,7 @@ export function Progress() {
         </Card>
       </div>
 
-      <Card title="Calories vs target" icon="flame">
+      <Card title="Calories vs target" icon="flame" tour="calchart">
         <CalorieChart data={calData} direction={state.goal.direction} />
         {fc ? (
           <p className={`callout ${fc.onTrack ? 'good' : 'warn'}`}>

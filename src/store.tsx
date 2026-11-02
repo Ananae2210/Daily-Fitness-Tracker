@@ -14,6 +14,7 @@ export const defaultState = (): AppState => ({
   lifts: [],
   theme: 'auto',
   compete: null,
+  intro: { splashSeen: false, tourDone: false },
 });
 
 const load = (): AppState => {
@@ -27,6 +28,8 @@ const load = (): AppState => {
       profile: { ...base.profile, ...parsed.profile },
       goal: { ...base.goal, ...parsed.goal },
       targets: { ...base.targets, ...parsed.targets },
+      // people who used the app before the intro existed skip the splash but still get the tour once
+      intro: parsed.intro ?? { splashSeen: !!parsed.onboarded, tourDone: false },
     };
   } catch {
     return defaultState();

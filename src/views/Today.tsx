@@ -28,7 +28,7 @@ export function Today({ date, setDate }: { date: string; setDate: (d: string) =>
 
   return (
     <div className="view">
-      <div className="date-nav">
+      <div className="date-nav" data-tour="datenav">
         <button className="icon-btn" onClick={() => setDate(addDays(date, -1))} aria-label="Previous day"><Icon name="left" /></button>
         <div className="date-title">
           <h1>{relativeDayLabel(date)}</h1>
@@ -38,10 +38,10 @@ export function Today({ date, setDate }: { date: string; setDate: (d: string) =>
       </div>
 
       <div className="grid-2">
-        <Card className="hero">
+        <Card className="hero" tour="hero">
           <div className="hero-top">
-            <Segmented label="Day type" value={day.type} onChange={(t) => updateDay(date, (d) => ({ ...d, type: t }))}
-              options={[{ value: 'rest', label: 'Rest day' }, { value: 'workout', label: 'Workout day' }]} />
+            <div data-tour="daytype"><Segmented label="Day type" value={day.type} onChange={(t) => updateDay(date, (d) => ({ ...d, type: t }))}
+              options={[{ value: 'rest', label: 'Rest day' }, { value: 'workout', label: 'Workout day' }]} /></div>
             <span className="score-pill" title="Calories, protein and water targets hit today">
               {[score.cal, score.protein, score.water].map((ok, i) => <i key={i} className={ok ? 'on' : ''} />)}
               {score.points}/3
@@ -80,7 +80,7 @@ export function Today({ date, setDate }: { date: string; setDate: (d: string) =>
           )}
         </Card>
 
-        <Card className="logger">
+        <Card className="logger" tour="logger">
           <div className="tabs" role="tablist">
             {([['meal', 'meal', 'Meal'], ['water', 'drop', 'Water'], ['caffeine', 'coffee', 'Caffeine'], ['checkin', 'moon', 'Check-in']] as const)
               .map(([k, icon, label]) => (
@@ -231,7 +231,7 @@ function DayLog({ date }: { date: string }) {
   }), `Removed ${r.title.toLowerCase()}`, true);
 
   return (
-    <Card title="Day log" icon="history" action={<span className="muted">{rows.length} entries</span>}>
+    <Card tour="daylog" title="Day log" icon="history" action={<span className="muted">{rows.length} entries</span>}>
       {rows.length === 0 ? (
         <p className="muted pad">Nothing logged yet. Start with a meal or a glass of water above.</p>
       ) : (
