@@ -1,3 +1,4 @@
+import { Wordmark } from '../components/Logo';
 import type { Snapshot } from '../share';
 import { CalorieChart } from '../components/Charts';
 import { Card, Stat } from '../components/ui';
@@ -7,7 +8,7 @@ export function SharedView({ snap, onExit }: { snap: Snapshot; onExit: () => voi
   return (
     <div className="shared">
       <header className="shared-head">
-        <div className="brand"><span className="logo" />Steady</div>
+        <Wordmark size={28} />
         <button className="btn" onClick={onExit}>Open my own tracker</button>
       </header>
       <div className="view">

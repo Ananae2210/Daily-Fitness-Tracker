@@ -1,3 +1,4 @@
+import { Wordmark } from '../components/Logo';
 import { useState } from 'react';
 import { useStore } from '../store';
 import { Field, Segmented, num } from '../components/ui';
@@ -31,7 +32,7 @@ export function Onboarding() {
   return (
     <div className="onboard">
       <div className="onboard-card">
-        <div className="brand big"><span className="logo" />Steady</div>
+        <Wordmark size={36} />
         <p className="lead">Track food, water, sleep and training in under a minute a day. Everything stays on your device.</p>
         <div className="steps"><i className={step >= 0 ? 'on' : ''} /><i className={step >= 1 ? 'on' : ''} /></div>
 

@@ -1,3 +1,4 @@
+import { Wordmark } from './components/Logo';
 import { useEffect, useRef, useState } from 'react';
 import { StoreProvider, useStore } from './store';
 import { today } from './date';
@@ -117,12 +118,12 @@ function Shell() {
   return (
     <div className="app">
       <aside className="sidebar">
-        <div className="brand"><span className="logo" />Steady</div>
+        <Wordmark size={30} />
         <nav>{nav(true)}</nav>
         <p className="sidebar-foot">{state.profile.name ? `Hi, ${state.profile.name}` : 'Stored on this device'}</p>
       </aside>
       <header className="topbar">
-        <div className="brand"><span className="logo" />Steady</div>
+        <Wordmark size={30} />
         <button className="icon-btn" aria-label="Settings" onClick={() => setTab('settings')}><Icon name="settings" /></button>
       </header>
       <main>

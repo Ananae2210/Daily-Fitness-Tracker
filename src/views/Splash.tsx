@@ -1,3 +1,4 @@
+import { LogoMark } from '../components/Logo';
 import { useEffect, useState } from 'react';
 import { Icon } from '../components/Icon';
 
@@ -23,14 +24,8 @@ export function Splash({ onDone }: { onDone: () => void }) {
     <div className={`splash ${leaving ? 'leaving' : ''}`} role="dialog" aria-labelledby="splash-title">
       <div className="splash-glow" aria-hidden="true" />
       <div className="splash-inner">
-        <div className="splash-mark" aria-hidden="true">
-          <svg viewBox="0 0 120 120" width="112" height="112">
-            <circle cx="60" cy="60" r="50" className="sm-track" />
-            <circle cx="60" cy="60" r="50" className="sm-ring" />
-            <path d="M40 62l13 13 28-30" className="sm-check" />
-          </svg>
-        </div>
-        <h1 id="splash-title" className="splash-title">Steady</h1>
+        <LogoMark size={112} animated className="splash-mark" />
+        <h1 id="splash-title" className="splash-title">steady</h1>
         <p className="splash-tag">Small daily habits, visible progress.</p>
 
         <ul className="splash-features">
